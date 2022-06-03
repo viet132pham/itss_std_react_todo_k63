@@ -5,10 +5,20 @@
 　・チェックボックスにチェックが入っているかアイテムをグレーアウトする
 */
 function TodoItem( props ) {
+  const handleChange = () => {
+    props.onCheck(props.item);
+  }
+
   return (
     <label className="panel-block">
-      <input type="checkbox" />
-      {props.item.text}
+      <input
+        type="checkbox"
+        checked={props.item.done}
+        onChange={handleChange}
+      />
+      <span className={props.item.done ? 'has-text-grey-light' : ''}>
+        {props.item.text}
+      </span>
     </label>
   );
 }
